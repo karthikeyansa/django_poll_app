@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All questions</title>
+</head>
+<body>
+<a href="{% url 'create' %}">Create a new Poll</a>
+{% if polls %}
+    {% for poll in polls %}
+        {% if poll %}
+            <br>
+            <br>
+            <ol type="1">
+                <li>{{ poll.question }}</li>
+                <h3>Votes</h3>
+                {{poll.choice1}}&nbsp;votes&nbsp;{{ poll.choice1_count }}<br>
+                {{poll.choice2}}&nbsp;votes&nbsp;{{ poll.choice2_count }}<br>
+                <a href="{% url 'view' poll.id %}">Vote</a>&nbsp;<a href="{% url 'delete' poll.id %}">Delete this poll</a>
+            </ol>
+        {% else %}
+            <h3>No Polls</h3>
+        {% endif %}
+    {% endfor %}
+{% else %}
+<h3> No Polls</h3>
+{% endif %}
+</body>
+</html>

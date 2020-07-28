@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vote</title>
+</head>
+<body>
+{% if poll %}
+<form action="{% url 'vote' poll.id %}" method="post">
+    <ol type="1">
+        <li>{{ poll.question }}</li>
+        <h3>Votes</h3>
+        <input type="radio" name="choice" value="{{ poll.choice1 }}"/>{{ poll.choice1 }}<br>
+        <input type="radio" name="choice" value="{{ poll.choice2 }}"/>{{ poll.choice2 }}<br>
+        <input type="submit" name="submit" value="submit"/>
+    </ol>
+{% else %}
+    <h3>No Polls Found</h3>
+{% endif %}
+</form>
+</body>
+</html>
