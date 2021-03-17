@@ -9,13 +9,16 @@ def create(request):
         choice1 = request.POST['choice1']
         choice2 = request.POST['choice2']
         newquestion = Question(question = question,choice1=choice1,choice2=choice2)
+        # Insert into Quesion(question, choice1, choice2) values('python 3', 'hello', 'world')
         newquestion.save()
         return redirect(home)
     else:
         return render(request,'polls/create.html')
+
 @csrf_exempt
 def vote(request,id):
     question = Question.objects.get(pk=id)
+    # select question from Question where id = 1
     if request.method == 'POST':
         selected = request.POST['choice']
         if selected == question.choice1:
@@ -32,6 +35,7 @@ def vote(request,id):
 @csrf_exempt
 def home(request):
     polls = Question.objects.all().order_by('-id')
+    # SELECT * FROM Question ORDER BY id DESC;
     return render(request,'polls/home.html',{'polls':polls})
 @csrf_exempt
 def view(request,id):

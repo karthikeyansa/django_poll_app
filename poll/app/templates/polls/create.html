@@ -5,6 +5,7 @@
     <title>create</title>
 </head>
 <body>
+{% csrf_token %}
 <form action="{% url 'create' %}" method="post">
     <h2>Enter Question<input type="text" name="question"/></h2><br>
     <h4>Enter Choice 1<input type="text" name="choice1"/></h4><br>
